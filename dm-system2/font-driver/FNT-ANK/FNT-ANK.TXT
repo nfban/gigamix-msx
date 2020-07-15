@@ -1,0 +1,50 @@
+Font Driver: 漢字ROM不要フォントドライバ
+Copyright (c) 1996-2020 MSX Club Gigamix
+(C)1998 GIGAMIX/Influenza
+
+■概要
+
+内蔵ANKフォントを加工して、16x16の全角文字、8x16の半角文字を供給します。
+KPRINTはもちろん、KPUTにも対応しています。
+
+	全角	ひらがな、カタカナ、アルファベット
+		数字、一部の記号、ごく一部の漢字
+
+	半角	すべて(当たり前)
+
+
+■使い方
+
+DMシステム2に内蔵半角ROMフォントドライバをインストールします。
+BASIC上で、
+
+	BLOAD"FNT-ANK.BIN",R [return]
+
+と入力するだけです。
+
+ただしあらかじめ、&HC000以降の領域を空けておく必要があります。
+
+例)	CLEAR300,&HC000
+
+
+■コピーライト・利用条件
+
+当ソフトウェアの著作権はMSX Club Gigamix(略称:Gigamix)が所有しています。
+当ソフトウェアで用いられている全てのバイナリおよびソースコードは、
+Apache 2.0ライセンスで配布します。
+
+当ソフトウェアは誰でも自由に複製・改変し、使用・販売することができます。
+ソースリストも添付します。ご自身のプログラムに組み込むことができます。
+当ソフトウェアを利用した結果生じたいかなる障害に対して、
+作者は一切の責任を負いません。使用者の責任のもとに使用してください。
+
+当ソフトウェアは、Apache 2.0ライセンスで配布された製作物が含まれます。
+This software includes the work that is distributed in the Apache License 2.0.
+http://www.apache.org/licenses/LICENSE-2.0
+
+
+■連絡先
+
+Website https://www.gigamix.jp/
+Twitter @nf_ban (Takashi Kobayashi)
+E-mail nf_ban@gigamix.jp (Takashi Kobayashi)
