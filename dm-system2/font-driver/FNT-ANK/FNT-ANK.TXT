@@ -1,49 +1,49 @@
-Font Driver: 漢字ROM不要フォントドライバ
+Font Driver: ����ROM�s�v�t�H���g�h���C�o
 Copyright (c) 1996-2020 MSX Club Gigamix
 (C)1998 GIGAMIX/Influenza
 
-■概要
+���T�v
 
-内蔵ANKフォントを加工して、16x16の全角文字、8x16の半角文字を供給します。
-KPRINTはもちろん、KPUTにも対応しています。
+����ANK�t�H���g�����H���āA16x16�̑S�p�����A8x16�̔��p�������������܂��B
+KPRINT�͂������AKPUT�ɂ��Ή����Ă��܂��B
 
-	全角	ひらがな、カタカナ、アルファベット
-		数字、一部の記号、ごく一部の漢字
+	�S�p	�Ђ炪�ȁA�J�^�J�i�A�A���t�@�x�b�g
+		�����A�ꕔ�̋L���A�����ꕔ�̊���
 
-	半角	すべて(当たり前)
+	���p	���ׂ�(������O)
 
 
-■使い方
+���g����
 
-DMシステム2に内蔵半角ROMフォントドライバをインストールします。
-BASIC上で、
+DM�V�X�e��2�ɓ������pROM�t�H���g�h���C�o���C���X�g�[�����܂��B
+BASIC��ŁA
 
 	BLOAD"FNT-ANK.BIN",R [return]
 
-と入力するだけです。
+�Ɠ��͂��邾���ł��B
 
-ただしあらかじめ、&HC000以降の領域を空けておく必要があります。
+���������炩���߁A&HC000�ȍ~�̗̈���󂯂Ă����K�v������܂��B
 
-例)	CLEAR300,&HC000
+��)	CLEAR300,&HC000
 
 
-■コピーライト・利用条件
+���R�s�[���C�g�E���p����
 
-当ソフトウェアの著作権はMSX Club Gigamix(略称:Gigamix)が所有しています。
-当ソフトウェアで用いられている全てのバイナリおよびソースコードは、
-Apache 2.0ライセンスで配布します。
+���\�t�g�E�F�A�̒��쌠��MSX Club Gigamix(����:Gigamix)�����L���Ă��܂��B
+���\�t�g�E�F�A�ŗp�����Ă���S�Ẵo�C�i������у\�[�X�R�[�h�́A
+Apache 2.0���C�Z���X�Ŕz�z���܂��B
 
-当ソフトウェアは誰でも自由に複製・改変し、使用・販売することができます。
-ソースリストも添付します。ご自身のプログラムに組み込むことができます。
-当ソフトウェアを利用した結果生じたいかなる障害に対して、
-作者は一切の責任を負いません。使用者の責任のもとに使用してください。
+���\�t�g�E�F�A�͒N�ł����R�ɕ����E���ς��A�g�p�E�̔����邱�Ƃ��ł��܂��B
+�\�[�X���X�g���Y�t���܂��B�����g�̃v���O�����ɑg�ݍ��ނ��Ƃ��ł��܂��B
+���\�t�g�E�F�A�𗘗p�������ʐ����������Ȃ��Q�ɑ΂��āA
+��҂͈�؂̐ӔC�𕉂��܂���B�g�p�҂̐ӔC�̂��ƂɎg�p���Ă��������B
 
-当ソフトウェアは、Apache 2.0ライセンスで配布された製作物が含まれます。
+���\�t�g�E�F�A�́AApache 2.0���C�Z���X�Ŕz�z���ꂽ���앨���܂܂�܂��B
 This software includes the work that is distributed in the Apache License 2.0.
 http://www.apache.org/licenses/LICENSE-2.0
 
 
-■連絡先
+���A����
 
 Website https://www.gigamix.jp/
 Twitter @nf_ban (Takashi Kobayashi)
