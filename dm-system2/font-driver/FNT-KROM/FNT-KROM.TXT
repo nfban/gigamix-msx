@@ -1,0 +1,48 @@
+Font Driver: MSX標準16ドット漢字ドライバ
+Copyright (c) 1996-2020 MSX Club Gigamix
+Copyright 1998 GIGAMIX/Influenza
+
+■概要
+
+　MSX規格に準拠した、JIS第1水準・第2水準の漢字ROMにて漢字表示を行うフォ
+ントドライバです。
+
+※このフォントドライバはDMシステム2にプレインストールされています。
+
+
+■インストール方法
+
+　DMシステム2・ユーティリティーディスクのSETUPツールでこのドライバを選択
+するのを推奨しますが、手動でインストールする方法をご説明します。
+
+	CLEAR 200,&HC000
+	BLOAD "fnt-krom.bin",R
+
+
+■注意
+
+　当然のことですが、フォントの実サイズ以上のサイズを指定した場合は、文字
+がガタガタになります。バグではありませんので、念のため。
+
+
+■コピーライト・利用条件
+
+当ソフトウェアの著作権はMSX Club Gigamix(略称:Gigamix)が所有しています。
+当ソフトウェアで用いられている全てのバイナリおよびソースコードは、
+Apache 2.0ライセンスで配布します。
+
+当ソフトウェアは誰でも自由に複製・改変し、使用・販売することができます。
+ソースリストも添付します。ご自身のプログラムに組み込むことができます。
+当ソフトウェアを利用した結果生じたいかなる障害に対して、
+作者は一切の責任を負いません。使用者の責任のもとに使用してください。
+
+当ソフトウェアは、Apache 2.0ライセンスで配布された製作物が含まれます。
+This software includes the work that is distributed in the Apache License 2.0.
+http://www.apache.org/licenses/LICENSE-2.0
+
+
+■連絡先
+
+Website https://www.gigamix.jp/
+Twitter @nf_ban (Takashi Kobayashi)
+E-mail nf_ban@gigamix.jp (Takashi Kobayashi)
