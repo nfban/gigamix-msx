@@ -1,0 +1,75 @@
+BGM Driver: FM-BIOS                     
+Copyright (c) 1996-2020 MSX Club Gigamix
+Copyright (C) 1999 GIGAMIX/Influenza
+
+■概要
+
+MSXのFM音源規格・MSX-MUSICに密かに内蔵されているBGMの演奏ルーチンです。
+OPLLでの最低限の演奏が可能で、PSGとSCCなど他の音源を併用できません。
+
+FM-BIOSの利点はその「軽さ」です。他のBGMドライバは多くの機能を実現する
+為に割り込み処理に時間がかかりますが、FM-BIOSは最低限の演奏しかできない
+かわりに、割り込み処理にほとんど時間をかけません。
+とにもかくにもスピードが欲しいソフトに最適です。
+
+ちなみに徳間書店「MSX-FAN」誌の付録ディスクでもこのBGM形式が採用されて
+いました。
+
+
+■ファイル構成
+
+BGM-BIOS.BIN	ドライバ本体＋インストーラ
+BGM-BIOS.TXT	今読んでるこのファイル
+
+
+■インストール方法
+
+DMシステム2・ユーティリティーディスクのSETUPツールでこのドライバ
+を選択するのを推奨しますが、手動でインストールすることもできます。
+
+BASIC上で、以下の命令を入力します。
+
+	BLOAD"BGM-BIOS.BIN",R [return]
+
+ただしあらかじめ、&HC000以降の領域を空けておく必要があります。
+
+	CLEAR 300,&HC000
+
+何らかのトラブルによりインストールが失敗したとき、
+“Device I/O Error”などのエラーを出力します。
+
+
+■BGM関連命令における本ソフトの挙動
+
+_BGMVOL    すべてのパラメータが無視されます。
+_BGMTRS    無視されます。
+_BGMOFF    フェードアウト効果のみ無視されます
+
+
+■マル得情報
+
+本体が330バイト、その後にＦＭワークが160バイトということで、
+&H600～&H21FFの &H1C00(7168)バイトが自由に使えます。
+
+
+■コピーライト・利用条件
+
+当ソフトウェアの著作権はMSX Club Gigamix(略称:Gigamix)が所有しています。
+当ソフトウェアで用いられている全てのバイナリおよびソースコードは、
+Apache 2.0ライセンスで配布します。
+
+当ソフトウェアは誰でも自由に複製・改変し、使用・販売することができます。
+ソースリストも添付します。ご自身のプログラムに組み込むことができます。
+当ソフトウェアを利用した結果生じたいかなる障害に対して、
+作者は一切の責任を負いません。使用者の責任のもとに使用してください。
+
+当ソフトウェアは、Apache 2.0ライセンスで配布された製作物が含まれます。
+This software includes the work that is distributed in the Apache License 2.0.
+http://www.apache.org/licenses/LICENSE-2.0
+
+
+■連絡先
+
+Website https://www.gigamix.jp/
+Twitter @nf_ban (Takashi Kobayashi)
+E-mail nf_ban@gigamix.jp (Takashi Kobayashi)
