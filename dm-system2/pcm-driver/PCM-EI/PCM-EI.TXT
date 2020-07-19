@@ -1,0 +1,53 @@
+PCM Driver: 割り込みを禁止しないPSGPLAY 
+Copyright (c) 1996-2020 MSX Club Gigamix
+
+//////// タイマー割り込みを禁止しない PSGPLAY ////////
+				95/12/14 いんふるえんざ
+
+■内容
+　　タイトルの通り。
+
+　　PSGPLAYのメインループ内に DI と EI 命令が加わったことで、再生レートに若干
+　の狂いが生じています。じゃあ、DI-PSGPLAYの再生レートは完璧なのかというと、
+　そうでもないので、あまり気にしないで良いです。
+　　割り込み処理がはさまる分だけ、ＰＣＭ再生時間が長くなることを見越して、ウ
+　エイトを心持ち減らしてあります。ただ、15.75KHzだけは、もうすでにノーウエイ
+　トで減らしようがありません。
+
+
+■インストール方法
+
+    CLEAR 200,&HC000
+　　BLOAD "PCM-EI.BIN",R
+
+
+■その他
+　　PSGPLAYは、KICHIさんのフリーウェアです、みたいな。
+
+
+■バージョンアップ履歴
+
+1996/03/18	version 1.0	暫定完成
+
+
+■コピーライト・利用条件
+
+当ソフトウェアの著作権はMSX Club Gigamix(略称:Gigamix)が所有しています。
+当ソフトウェアで用いられている全てのバイナリおよびソースコードは、
+Apache 2.0ライセンスで配布します。
+
+当ソフトウェアは誰でも自由に複製・改変し、使用・販売することができます。
+ソースリストも添付します。ご自身のプログラムに組み込むことができます。
+当ソフトウェアを利用した結果生じたいかなる障害に対して、
+作者は一切の責任を負いません。使用者の責任のもとに使用してください。
+
+当ソフトウェアは、Apache 2.0ライセンスで配布された製作物が含まれます。
+This software includes the work that is distributed in the Apache License 2.0.
+http://www.apache.org/licenses/LICENSE-2.0
+
+
+■連絡先
+
+Website https://www.gigamix.jp/
+Twitter @nf_ban (Takashi Kobayashi)
+E-mail nf_ban@gigamix.jp (Takashi Kobayashi)
