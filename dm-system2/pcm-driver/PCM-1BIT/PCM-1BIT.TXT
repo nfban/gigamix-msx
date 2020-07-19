@@ -1,0 +1,46 @@
+PCM Driver: 1bit sound port PCMドライバ 
+Copyright (c) 1996-2020 MSX Club Gigamix
+Copyright 1996 GIGAMIX(ごりぽん/Mattya)
+
+■概要
+
+	MSXの1bit sound portを利用してPCMを再生します。turboRでも内蔵PCM
+	を使わず、あえて1bit sound portでPCMを再生するのがウリです(笑)。
+
+	なんせ1bitですから、はっきり言ってPSG用のPCMドライバとは音質の点
+	ではるかに遅れをとっています。それでもこういうドライバを公開する
+	のは、もはや趣味です(笑)。
+
+	唯一の利点は、BGMのPSG演奏時でもPSGへ影響を与えないくらいです。
+
+
+■インストール方法
+
+　DMシステム2・ユーティリティーディスクのSETUPツールでこのドライバを選択
+するのを推奨しますが、手動でインストールする方法をご説明します。
+
+	CLEAR 200,&HC000
+	BLOAD "pcm-1bit.bin",R
+
+
+■コピーライト・利用条件
+
+当ソフトウェアの著作権はMSX Club Gigamix(略称:Gigamix)が所有しています。
+当ソフトウェアで用いられている全てのバイナリおよびソースコードは、
+Apache 2.0ライセンスで配布します。
+
+当ソフトウェアは誰でも自由に複製・改変し、使用・販売することができます。
+ソースリストも添付します。ご自身のプログラムに組み込むことができます。
+当ソフトウェアを利用した結果生じたいかなる障害に対して、
+作者は一切の責任を負いません。使用者の責任のもとに使用してください。
+
+当ソフトウェアは、Apache 2.0ライセンスで配布された製作物が含まれます。
+This software includes the work that is distributed in the Apache License 2.0.
+http://www.apache.org/licenses/LICENSE-2.0
+
+
+■連絡先
+
+Website https://www.gigamix.jp/
+Twitter @nf_ban (Takashi Kobayashi)
+E-mail nf_ban@gigamix.jp (Takashi Kobayashi)
