@@ -1,0 +1,56 @@
+PCM Driver: MSX turbo R用 PCMドライバ   
+Copyright (c) 1996-2020 MSX Club Gigamix
+Copyright 1996-1998 GIGAMIX/nf_ban
+
+■概要
+
+	MSX turbo RのPCM音源を利用してPCMを再生します。
+	MSX2/2+では何もしません。
+
+
+■インストール方法
+
+　DMシステム2・ユーティリティーディスクのSETUPツールでこのドライバを選択
+するのを推奨しますが、手動でインストールする方法をご説明します。
+
+	CLEAR 200,&HC000
+	BLOAD "pcm-tr.bin",R
+
+
+■注意
+
+	要するにPCM BIOS(PCMPLY)を使っているだけのドライバなのですが
+	PCMPLYはPCM再生中にSTOPキーを押しただけ(Ctrl+STOPではない)で再生
+	を終了してしまい、プログラム実行中でもBASICのプロンプトへ落ちて
+	しまいます。BASICの_pcmplayで苦い経験を味わったMSXクリエイターは
+	多いと思いますが…。
+
+	このドライバではとりあえずプロンプトへ落ちることは回避してありま
+	すが、PCM再生が停止してしまうのは諦めてください。自前でPCMを再生
+	するルーチンを組むのは結構大変なので、技術の無い私には到底できま
+	せん。
+
+	まぁ、個人的にはこれでも特に支障は無いと思うのですが。
+
+
+■コピーライト・利用条件
+
+当ソフトウェアの著作権はMSX Club Gigamix(略称:Gigamix)が所有しています。
+当ソフトウェアで用いられている全てのバイナリおよびソースコードは、
+Apache 2.0ライセンスで配布します。
+
+当ソフトウェアは誰でも自由に複製・改変し、使用・販売することができます。
+ソースリストも添付します。ご自身のプログラムに組み込むことができます。
+当ソフトウェアを利用した結果生じたいかなる障害に対して、
+作者は一切の責任を負いません。使用者の責任のもとに使用してください。
+
+当ソフトウェアは、Apache 2.0ライセンスで配布された製作物が含まれます。
+This software includes the work that is distributed in the Apache License 2.0.
+http://www.apache.org/licenses/LICENSE-2.0
+
+
+■連絡先
+
+Website https://www.gigamix.jp/
+Twitter @nf_ban (Takashi Kobayashi)
+E-mail nf_ban@gigamix.jp (Takashi Kobayashi)
