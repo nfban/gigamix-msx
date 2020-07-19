@@ -1,0 +1,48 @@
+Font Driver: かんたん手帳リフィルくん   
+Copyright (c) 1996-2020 MSX Club Gigamix
+(C)1998 GIGAMIX/Influenza/A to C
+
+■概要
+
+アスキー製の「かんたん手帳リフィルくん」に内蔵されている12ドット漢字
+フォントを利用して、12x12の全角文字、6x12の半角文字を供給します。
+
+　全角	JIS第1水準 漢字ROM相当
+　半角	すべて
+
+
+■使い方
+
+BASIC上で、以下の命令を入力します。
+
+	BLOAD"FNT-RFIL.BIN",R [return]
+
+ただしあらかじめ、&HC000以降の領域を空けておく必要があります。
+
+	CLEAR 300,&HC000
+
+何らかのトラブルによりインストールが失敗したとき、
+“Device I/O Error”などのエラーを出力します。
+
+
+■コピーライト・利用条件
+
+当ソフトウェアの著作権はMSX Club Gigamix(略称:Gigamix)が所有しています。
+当ソフトウェアで用いられている全てのバイナリおよびソースコードは、
+Apache 2.0ライセンスで配布します。
+
+当ソフトウェアは誰でも自由に複製・改変し、使用・販売することができます。
+ソースリストも添付します。ご自身のプログラムに組み込むことができます。
+当ソフトウェアを利用した結果生じたいかなる障害に対して、
+作者は一切の責任を負いません。使用者の責任のもとに使用してください。
+
+当ソフトウェアは、Apache 2.0ライセンスで配布された製作物が含まれます。
+This software includes the work that is distributed in the Apache License 2.0.
+http://www.apache.org/licenses/LICENSE-2.0
+
+
+■連絡先
+
+Website https://www.gigamix.jp/
+Twitter @nf_ban (Takashi Kobayashi)
+E-mail nf_ban@gigamix.jp (Takashi Kobayashi)
