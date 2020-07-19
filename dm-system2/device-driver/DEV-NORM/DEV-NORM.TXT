@@ -1,0 +1,82 @@
+Device Driver: 標準デバイスドライバ     
+Copyright (c) 1996-2020 MSX Club Gigamix
+
+■概要
+
+　標準的なDMシステム2用デバイスドライバです。
+
+　ずっと保留にしてあった「マウス使用中のBEEP」問題を解決しました。
+　動作確認をお願いします。FS-A1STの R800(DRAM)モード、R800(ROM)モード、
+Z80モードについては動作確認済みです。
+
+
+■インストール方法
+
+　DMシステム2・ユーティリティーディスクのSETUPツールでこのドライバを選択
+するのを推奨しますが、手動でインストールする方法をご説明します。
+
+	CLEAR 200,&HC000
+	BLOAD "DEV-NORM.BIN",R
+
+
+■バージョンアップ履歴
+
+初版
+
+　プログラムは、スタＳの窓側においてあるMSX2からマウスのBIOSを逆アセして、
+これをベースにターボＲに対応させました。
+
+　タイミングを取るための
+	EX	(SP),HL
+	EX	(SP),HL
+	EX	(SP),HL
+	EX	(SP),HL
+	RET
+　というサブルーチンを
+	PUSH	HL
+	LD	L,A
+	IN	A,(0E6H)
+	LD	H,A
+SWAIT1:	IN	A,(0E6H)
+	SUB	H
+	CP	7
+	JR	C,SWAIT1
+	LD	A,L
+	POP	HL
+	RET
+　へと書き換えるだけです。_DMMINI時にMSXのバージョンチェックをしてター
+ボＲだった場合にね。
+
+						確認報告がこわい　ふる
+
+
+1996/06/21
+
+　_DMMから落ちてくるのは防げるようになったけど、同様の条件(割り込みで
+マウス読み出し)での STICK(n)関数で 5を返してしまうことがあります。
+
+　割り込み中のマウス読み出しを BIOSに変えてみてもダメ。DIとEIの使い所
+も間違っているようには見えず、原因は不明なままです。
+
+
+■コピーライト・利用条件
+
+当ソフトウェアの著作権はMSX Club Gigamix(略称:Gigamix)が所有しています。
+当ソフトウェアで用いられている全てのバイナリおよびソースコードは、
+Apache 2.0ライセンスで配布します。
+
+当ソフトウェアは誰でも自由に複製・改変し、使用・販売することができます。
+ソースリストも添付します。ご自身のプログラムに組み込むことができます。
+当ソフトウェアを利用した結果生じたいかなる障害に対して、
+作者は一切の責任を負いません。使用者の責任のもとに使用してください。
+
+当ソフトウェアは、Apache 2.0ライセンスで配布された製作物が含まれます。
+This software includes the work that is distributed in the Apache License 2.0.
+http://www.apache.org/licenses/LICENSE-2.0
+
+
+■連絡先
+
+Website https://www.gigamix.jp/
+Twitter @nf_ban (Takashi Kobayashi)
+E-mail nf_ban@gigamix.jp (Takashi Kobayashi)
