@@ -1,0 +1,55 @@
+Device Driver: ON STRIG対応デバイスドライバ     
+Copyright (c) 1996-2020 MSX Club Gigamix
+Copyright (c) 2001 by GIGAMIX, All rights reserved.
+
+■概要
+
+標準デバイスドライバの機能に加え、キーボードでの入力もインフォメーション
+エリアのDEVTRGへ返すようになっています。
+
+これをインストールすると、GRAPH、TAB、ESC、HOME、SELECTの各キー(DMMKEYに
+よるカスタマイズ対応)でもON STRIG GOSUB割り込みが掛かるようになります。
+
+
+■ファイル構成
+
+BGM-WEND.BIN	ドライバ本体＋インストーラ
+BGM-WEND.TXT	今読んでいるこのファイル
+
+
+■インストール方法
+
+このドライバをインストールするには、BASIC上で以下の命令を入力します。
+
+	CLEAR 200,&HC000
+	BLOAD "dev-wend.bin",R
+
+
+■バージョンアップ履歴
+
+010912		初版制作、終末の過ごし方 for MSXで採用
+
+ドライバ制作: ごりぽん
+
+
+■コピーライト・利用条件
+
+当ソフトウェアの著作権はMSX Club Gigamix(略称:Gigamix)が所有しています。
+当ソフトウェアで用いられている全てのバイナリおよびソースコードは、
+Apache 2.0ライセンスで配布します。
+
+当ソフトウェアは誰でも自由に複製・改変し、使用・販売することができます。
+ソースリストも添付します。ご自身のプログラムに組み込むことができます。
+当ソフトウェアを利用した結果生じたいかなる障害に対して、
+作者は一切の責任を負いません。使用者の責任のもとに使用してください。
+
+当ソフトウェアは、Apache 2.0ライセンスで配布された製作物が含まれます。
+This software includes the work that is distributed in the Apache License 2.0.
+http://www.apache.org/licenses/LICENSE-2.0
+
+
+■連絡先
+
+Website https://www.gigamix.jp/
+Twitter @nf_ban (Takashi Kobayashi)
+E-mail nf_ban@gigamix.jp (Takashi Kobayashi)
