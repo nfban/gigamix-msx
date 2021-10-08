@@ -1,0 +1,87 @@
+;松下仕様12ドット漢字ROM用フォントドライバ
+;(C)2001 GIGAMIX/Goripon
+;01/07/11
+;	r010711a	初版
+
+	.z80
+	cseg
+
+FONT12	equ	7600h
+
+DRVMM12::
+	.phase	FONT12
+;		0         10        20        30        40
+;		+----+----+----+----+----+----+----+----+
+	db	'Matsushita type 12dot Kanji-ROM r010711a'
+	db	1Ah	;EOF
+	db	00h	;フォントドライバ
+	db	02h	;12×12フォントドライバ
+	ds	5	;未使用
+	jp	fntdrv	;コールエントリ:フォントの獲得
+
+fntdrv:
+	in	a,(40h)
+	cpl
+	push	af
+	ld	a,0F7h
+	di
+	out	(40h),a
+	inc	b
+	dec	b
+	jr	z,hankaku
+	ld	hl,7340h
+	ld	a,d
+	cp	0E0h
+	jr	c,lv2type
+	ld	h,0B3h
+lv2type:
+	ex	de,hl
+	or	a
+	sbc	hl,de
+	ex	de,hl
+hankaku:
+	push	de
+	ex	de,hl
+	ld	de,253Fh
+	or	a
+	sbc	hl,de
+	pop	de
+	in	a,(40h)
+	jr	c,level1
+	in	a,(41h)
+level1:
+	cp	08h
+	jr	z,cm1enable
+	ld	a,3
+	out	(42h),a
+cm1enable:
+	pop	af
+	inc	b
+	dec	b
+	jr	z,rethankaku
+	call	getfont
+	ld	de,0C0Ch
+	ld	bc,000Ch
+	ret
+rethankaku:
+	call	getfont
+	ld	de,0C06h
+	ld	bc,000Ch
+	ret
+getfont:	
+	ld	hl,fontbuf
+	push	hl
+	ld	bc,1247h
+	out	(c),d
+	inc	c
+	out	(c),e
+	inc	c
+	inir
+	ei
+	pop	hl
+	out	(40h),a
+	ret
+fontbuf:
+	.dephase
+
+	end
