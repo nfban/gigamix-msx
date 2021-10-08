@@ -1,0 +1,19 @@
+#
+# makefile for BOLAND MAKE.EXE
+#
+.suffixes : .mac .rel
+.mac.rel :
+	xm80 $< -r -m
+
+all :	FNT-VIEW.BIN FNT-VIEW.DRV
+
+FNT-VIEW.BIN :	INS-VIEW.REL SRC-VIEW.REL FNT-VIEW.REL
+	xl80 -p c000 -d c000 $** -n INSTALL -x -e INST
+	bsave INSTALL.HEX FNT-VIEW.BIN
+	del INSTALL.HEX
+
+FNT-VIEW.DRV :	FNT-VIEW.REL
+	xl80 -p 100 -d 100 $** -n DRIVER -e
+	copy DRIVER.COM FNT-VIEW.DRV >nul
+	del DRIVER.COM
+
