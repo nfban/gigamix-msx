@@ -1,0 +1,18 @@
+NDP (PSG Driver for MSX) version 1.00は、なると氏によるフリーソフトウェアです。
+
+NDP形式のBGMデータを制作するには、なると@naruto2413 氏作のツールが必要です。
+NDPの各種ツールおよびドライバのZ80アセンブリソースは、なると氏の公式Webページで入手できます。
+https://ndp.squares.net/web/
+
+このBGMドライバ（DMシステム2向け BGM-NDP）は元のNDPのライセンスを引き継ぎます。
+改造含め自由に使っていただいて構いませんが、作者を偽るようなことはしないでください。
+
+
+Copyright (c) 2025 naruto2413
+Copyright (c) 2025 MSX Club Gigamix
+
+NDP (PSG Driver for MSX) version 1.00 is free software by naruto2413.
+https://ndp.squares.net/web/
+
+This program (BGM-NDP, for Gigamix DM-SYSTEM2) inherits the original NDP license.
+You are free to use it, including modifying it, but please do not misrepresent the author.
