@@ -1,0 +1,245 @@
+;ねいこらずフォント(kanji3.grp)用のフォントドライバ
+;(c) 1992-1996 KICHI/GIGAMIX (ITARO/Influenza)
+
+        .Z80
+;       ASEG
+;       ORG     7600h   ;12×12用
+        CSEG
+
+VDP	EQU	00007H
+
+;               0         10        20        30        40
+;		+----+----+----+----+----+----+----+----+
+	DEFB	"ﾈｺｲﾗｽﾞ12x12 FONT-DRIVER (C)KICHI/GIGAMIX"
+	DEFB	1Ah	;EOF
+	DEFB	00h	;フォントドライバの意
+	DEFB	02h	;12×12フォントドライバの意
+	DEFS	5	;未使用
+
+	JP	FNTDRV	;フォントの獲得
+
+
+;全角、半角判別処理
+
+FNTDRV:	XOR	A
+	OR	B		;半角判定
+	JP	Z,HANKAK
+	DEC	B
+	JP	Z,ZENKAK	;１水判定
+	LD	HL,TOFU
+	LD	BC,1		;頭腐の返り血
+	LD	E,C
+	LD	D,C
+
+	RET
+TOFU:	DB	0FFH
+
+HANKAK:
+	LD	A,E
+	SUB	32
+	LD	H,B
+	LD	L,A
+	LD	C,L
+	ADD	HL,HL
+	ADD	HL,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	LD	B,9
+	CALL	RDVR		;フォント格納サブ
+
+	LD	HL,FONT
+	LD	DE,FONT2
+	LD	B,3
+
+HANSUB:	LD	A,(HL)		;半角フォントのデータ加工
+	LD	(DE),A		;00000011=000000XX
+	INC	HL
+	LD	C,(HL)
+	SLA	C
+	RLA
+	SLA	C
+	RLA			;00001111=XXXX1111
+	INC	DE
+	LD	(DE),A
+	LD	A,C
+	INC	DE
+	LD	(DE),A		;11222200=11XXXXXX
+	LD	A,(HL)
+	INC	HL
+	LD	C,(HL)
+	SLA	C
+	RLA
+	SLA	C
+	RLA
+	RLA
+	RLA
+	INC	DE
+	LD	(DE),A		;22222211=222222XX
+	LD	A,(HL)
+	RRA
+	RR	C
+	RRA
+	RR	C
+	INC	DE
+	LD	(DE),A		;33223333=XXXX3333
+	LD	A,C
+	INC	DE
+	LD	(DE),A		;33XXXXXX
+	INC	DE
+	INC	HL
+	DJNZ	HANSUB
+
+	LD	HL,FONT2
+	LD	DE,0C06H
+	LD	BC,000CH
+	RET
+
+;	DE→SHIFT-JIS CODE 
+;	B →0
+
+ZENKAK:	EX	DE,HL		;シフトＪＩＳ→ＶＲＡＭアドレス
+	OR	A
+	LD	DE,08140H
+	SBC	HL,DE
+	LD	A,63
+	CP	L
+	JP	NC,BIG
+	DEC	L		;　下一桁が７Ｆｈのコードはないので
+				;　間をつめる
+
+
+BIG:	LD	DE,188
+	LD	B,H
+	LD	A,L
+	LD	HL,0
+	INC	B
+
+AD:	ADD	HL,DE		;　コードが２５６変わる間にある文字は
+	DJNZ	AD		;　１８８文字なので、まずＨＬ＝Ｈ＊１８８
+	OR	A
+	SBC	HL,DE
+	ADD	A,L		;　下二桁（０～１８７に換算済み）を加算
+	LD	L,A
+	LD	A,H
+	LD	H,0
+	ADC	A,H
+	LD	H,A		;　ここまでで漢字コードを連続する整数に変換
+				;　漢字ロムがある場合は必要ありません
+				;　ただし、Ｓ－ＪＩＳ＝＞ＪＩＳのプログラムが
+				;　必要（ＲＤＶＲの側で処理してもいいですが）
+	LD	B,H
+	LD	C,L
+	LD	DE,1410
+	OR	A
+	SBC	HL,DE
+	JP	C,KIGO		;　記号ルーチンへ
+				;　これまたロムがあれば分岐の必要なし
+
+	ADD	HL,HL		;　ＪＩＳ１漢字ルーチン
+	LD	D,H
+	LD	E,L
+	ADD	HL,HL
+	ADD	HL,HL
+	ADD	HL,HL
+	ADD	HL,DE
+	LD	DE,02F0AH	;　半角文字・記号のフォントをとばす
+	ADD	HL,DE		;　このへんもロムがあれば不要
+HYOSUB:	LD	B,18
+	CALL	RDVR
+
+	LD	HL,FONT		;返り血
+	LD	DE,0C0CH
+	LD	BC,000CH
+
+	RET			;帰る
+
+
+
+KIGO:	LD	(KAZU1),BC	;　この辺りからのプログラムで、
+	LD	HL,SKIPD	;　記号コードの間のスキマをうめる
+	LD	(KAZU2),HL	;　漢字ロムがあれば（こればっかり・・・）
+KIGO2:	LD	HL,(KAZU2)	;　こっちに分岐してくることもないわけですから
+	LD	E,(HL)		;　まったく不要
+	INC	HL
+	LD	D,(HL)
+	LD	HL,(KAZU1)
+	XOR	A
+	SBC	HL,DE
+	JP	C,KIGO3
+	LD	HL,(KAZU2)
+	INC	HL
+	INC	HL
+	LD	E,(HL)
+	LD	D,0
+	INC	HL
+	LD	(KAZU2),HL
+	LD	H,B
+	LD	L,C
+	XOR	A
+	SBC	HL,DE
+	LD	B,H
+	LD	C,L
+	JP	KIGO2
+KIGO3:	LD	H,B
+	LD	L,C
+	ADD	HL,HL
+	ADD	HL,HL
+	ADD	HL,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	ADD	HL,BC
+	LD	DE,07E0H	;　半角のフォントをとばす
+	ADD	HL,DE
+	JP	HYOSUB		;　表示ルーチンを呼んで帰る
+
+SKIPD:	DEFB	0C3H,000H,008H	;　記号の間をうめるためのデータ
+	DEFB	0D5H,000H,007H
+	DEFB	0F6H,000H,006H
+	DEFB	016H,001H,004H
+	DEFB	072H,001H,006H
+	DEFB	0CEH,001H,008H
+	DEFB	0EEH,001H,007H
+	DEFB	00EH,002H,006H
+	DEFB	015H,002H,01FH
+	DEFB	055H,002H,00FH
+	DEFB	0FFH,0FFH,000H
+
+RDVR:					;ＶＲＡＭ→ＲＡＭ転送
+	LD	DE,FONT
+	LD	A,(VDP)
+	LD	C,A
+	INC	C
+	XOR	A
+	INC	A
+	ADD	HL,HL
+	RLA
+	ADD	HL,HL
+	RLA
+	SRL	H
+	RR	L
+	SRL	H
+	RR	L
+
+	DI				;転送元アドレスの設定
+	OUT	(C),A
+	LD	A,08EH
+	OUT	(C),A
+	NOP
+	OUT	(C),L
+	NOP
+	OUT	(C),H
+	DEC	C
+	EI
+
+	EX	DE,HL
+RDLP:	INIR				;いざ転送
+	RET
+	
+FONT:	DEFS	18
+FONT2:	DEFS	18
+
+KAZU1:	DEFS	2
+KAZU2:	DEFS	2
+	END
+
+;　お疲れ様でした

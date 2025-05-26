@@ -1,0 +1,91 @@
+Font Driver: ねこいらず12dot漢字ドライバ
+Copyright 1992-1994 KICHI
+Copyright (c) 1996-2021 MSX Club Gigamix
+
+
+■概要
+
+「ねこいらず」形式の漢字フォントデータをVRAMへ配置しておくことで
+漢字ROMを搭載しない機種で動作するDMシステム2上で日本語表示を行います。
+
+※「ねこいらず」はKICHIさんが開発した、MSX漢字表示システムです。
+
+VRAMの64KBを漢字フォントが占有する為、ゲーム等VRAMを多く消費するシーン
+では工夫が必要です。
+
+「ねこいらず」で表示可能な文字は以下の通りです。
+　半角文字…シフトJISで表示できる全コード
+　全角文字…JIS第1水準漢字(新JIS)、MSX共通非漢字(旧JIS)
+
+
+■ファイル構成
+
+FNT-NEKO.BIN　フォントドライバ
+KANJI3.GRP　　漢字フォントデータ
+FNT-NEKO.TXT　今読んでいるこのファイル
+
+
+
+■インストール方法
+
+　DMシステム2・ユーティリティーディスクのSETUPツールでこのドライバを選択
+するのを推奨しますが、手動でインストールする方法をご説明します。
+
+1)ドライバをインストールします。
+　CLEAR 200,&HC000
+　BLOAD "FNT-NEKO.BIN",R
+
+2)漢字フォントをVRAMの裏画面へ配置します。
+　_LOAD ("KANJI3.GRP",@65536!,,7)
+
+
+■注意
+
+　裏VRAM(10000h)にフォントデータを配置していないと漢字が表示できません。
+
+　裏VRAMにフォントデータを配置しても、screen 4以下の画面モードでは漢字が
+表示できません。
+
+　フォントデータの配置作業をドライバ側は一切考えないので、ソフト側で配置
+作業を行わなければなりません。
+
+　当然のことですが、フォントの実サイズ以上のサイズを指定した場合は、文字
+がガタガタになります。バグではありませんので、念のため。
+
+
+■謝辞
+
+漢字フォントデータのデザイン担当と情報源
+　半角文字
+　　オリジナルフォント　作：KICHI（Gigamix）
+　全角文字
+　　東雲12ドットゴシック体　作：古川泰之、電子書体オープンラボ
+　　http://openlab.ring.gr.jp/efont/shinonome/
+　　MSX共通非漢字フリーフォント　作：nf_ban（Gigamix）
+　　https://gigamix.hatenablog.com/entry/kanjirom-nonkanji-freefont
+
+ドライバ製作担当
+Gigamix（ITARO/Influenza）
+
+
+■コピーライト・利用条件
+
+当ソフトウェアの著作権はMSX Club Gigamix(略称:Gigamix)が所有しています。
+当ソフトウェアで用いられている全てのバイナリおよびソースコードは、
+Apache 2.0ライセンスで配布します。
+
+当ソフトウェアは誰でも自由に複製・改変し、使用・販売することができます。
+ソースリストも添付します。ご自身のプログラムに組み込むことができます。
+当ソフトウェアを利用した結果生じたいかなる障害に対して、
+作者は一切の責任を負いません。使用者の責任のもとに使用してください。
+
+当ソフトウェアは、Apache 2.0ライセンスで配布された製作物が含まれます。
+This software includes the work that is distributed in the Apache License 2.0.
+http://www.apache.org/licenses/LICENSE-2.0
+
+
+■連絡先
+
+Website https://www.gigamix.jp/
+Twitter @nf_ban (Takashi Kobayashi)
+E-mail nf_ban@gigamix.jp (Takashi Kobayashi)
